@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Playwright Selectors</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+
+    <!-- Favicon
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+<!-- Primary Page Layout
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div class="container">
+    <div class="row" style="margin-top: 10%">
+        <h3>Contact Details</h3>
+        <a href="index.html">Go Back</a>
+        <br/><br/>
+        <form id="contactForm">
+            <div class="row">
+                <div class="six columns">
+                    <label for="nameInput">Name</label>
+                    <input class="u-full-width" id="nameInput">
+
+                    <label for="surnameInput">Surname</label>
+                    <!-- my-id is not allowed and not recognized by PW-->
+                    <input class="u-full-width" id="surnameInput" data-test-id="surnameInput" my-id="surnameInput">
+
+                    <label for="emailInput">Email</label>
+                    <input class="u-full-width" type="email" placeholder="your@email.com" id="emailInput">
+                </div>
+            </div>
+            <button type="button" class="button-primary"> Submit </button>
+        </form>
+    </div>
+</div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

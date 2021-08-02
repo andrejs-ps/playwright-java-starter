@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Playwright Test Page</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="one-half column" style="margin-top: 10%">
+        <h1>Contact Page</h1>
+        <p></p>
+        <form>
+          <div class="row">
+            <div class="six columns">
+              <label for="emailInput">Your email</label>
+              <input class="u-full-width" type="email" placeholder="your@email.com" id="emailInput">
+            </div>
+            <div class="six columns">
+              <label for="contactReason">Reason for contacting</label>
+              <select class="u-full-width" id="contactReason">
+                <option value="Option 1">Question</option>
+                <option value="Option 2">Feedback</option>
+                <option value="Option 3">I'm just bored</option>
+              </select>
+            </div>
+          </div>
+          <label for="exampleMessage">Message</label>
+          <div id="boredOption"></div>
+          <textarea class="u-full-width" placeholder="Where do I start..." id="exampleMessage"></textarea>
+          <label class="example-send-yourself-copy">
+            <input type="checkbox" id="sendCopy">
+            <span class="label-body" >Send a copy to yourself</span>
+          </label>
+          <button type="button" class="button-primary"> Submit </button>
+        </form>
+        <div id="copyConfirmation"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/my.js"></script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
