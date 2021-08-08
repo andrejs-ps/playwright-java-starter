@@ -85,4 +85,15 @@ public class PlayWrightOverview {
         pw.close();
         pw2.close();
     }
+
+    @Test
+    // keyboard input works ONLY on web elements, whatever is backed by HTML
+    // interacting with browser features e.g. right-click context menu is NOT possible
+    public void keyboardAndMouse() {
+        Page page = Playwright.create().chromium().launch().newPage();
+        page.navigate("wherever");
+        page.focus("#whatever");
+        page.keyboard().press("Shift+A");
+        page.keyboard().press("ArrowLeft");
+    }
 }

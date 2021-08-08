@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class _2IdSelector {
 
-    String selectors = "file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html";
+    String home = "file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html";
 
     @Test
     public void idSelectorsTest() {
@@ -17,11 +17,11 @@ public class _2IdSelector {
             BrowserType browserType = playwright.chromium();
             Browser browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(2000));
             Page page = browser.newPage();
-            page.navigate(selectors);
+            page.navigate(home);
 
-            page.fill("id=surnameInput", "John");
-            page.fill("data-test-id=surnameInput", "Sarah");
-            page.fill("my-id=surnameInput", "Mike"); // error!
+            page.fill("id=surnameInput", "Brown");
+            page.fill("data-test-id=surnameInput", "Smith");
+            page.fill("my-id=surnameInput", "Simpson"); // error!
         }
     }
 }

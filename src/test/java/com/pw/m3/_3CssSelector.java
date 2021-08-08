@@ -9,15 +9,15 @@ import org.junit.jupiter.api.Test;
 
 public class _3CssSelector {
 
-    String selectors = "file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html";
+    String home = "file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html";
 
     @Test
     public void cssSelectorsTest() {
         try (Playwright playwright = Playwright.create()) {
             BrowserType browserType = playwright.chromium();
-            Browser browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(2000));
+            Browser browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(3000));
             Page page = browser.newPage();
-            page.navigate(selectors);
+            page.navigate(home);
 
             // most generic option
             page.fill("input", "first input box that PW finds");

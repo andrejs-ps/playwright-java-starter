@@ -30,7 +30,7 @@
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
-            <version>1.13.0</version>
+            <version>1.14.1</version>
         </dependency>
     </dependencies>
 </project>

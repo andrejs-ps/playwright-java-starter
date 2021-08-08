@@ -21,12 +21,21 @@ $(document).ready(function() {
     // Donation
     $('#submit-donation').click(function() {
         var amount = $('#donation').val();
+        var confirmation = $('#donation-confirmation');
         if (amount < 100) {
             alert("Thank You");
+            confirmation.addClass("alert alert-primary").html("Thank you!");
         } else if (amount < 1000) {
-            confirm("That's a generous sum! Are you sure?")
+            if (confirm("That's a generous sum! Are you sure?")) {
+                confirmation.addClass("alert alert-primary").html("Thanks for confirming!");
+            } else {
+                confirmation.addClass("alert alert-primary").html("It's OK to change one's mind");
+            }
         } else {
-            prompt("Please confirm you're serious by typing in 'Yes'");
+            var response = prompt("Please confirm you're serious by typing in 'Yes'");
+            if(response === "Yes") {
+                confirmation.addClass("alert alert-primary").html("Thank you for your generosity");
+            }
         }
     });
 
@@ -35,7 +44,7 @@ $(document).ready(function() {
     $('#clap-image').click(function() {
         if (clapCount < 1) {
             $('#thank-you').addClass("alert alert-success").html("We appreciate it!");
-
+            localStorage.setItem("clapped", "true");
             clapCount++;
         } else if (clapCount < 2) {
             $('#thank-you-2').addClass("alert alert-warning").html("You can only clap once, but thanks for your enthusiasm.");

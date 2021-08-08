@@ -25,6 +25,8 @@
           font-size: 3.5rem;
         }
       }
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="css/heroes.css" rel="stylesheet">
@@ -33,20 +35,30 @@
 <main>
 
     <!-- Hero Banner -->
-    <div class="container col-xxl-8 px-4 py-5">
+    <div class="container col-xxl-8 px-4 py-5" id="hero-banner">
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
             <div class="col-10 col-sm-8 col-lg-6">
                 <img src="images/bag.png" class="d-block mx-lg-auto img-fluid" alt="Bag" width="140" height="100"
                      loading="lazy">
             </div>
             <div class="col-lg-6">
-                <h3 class="display-5 fw-bold lh-1 mb-3">Cat In The Bag Inc.</h3>
+                <h3 class="display-5 fw-bold lh-1 mb-3">Cat In The Bag</h3>
                 <p class="lead">We're building the next big thing! It will be a complete surprise and it will be
                     awesome!</p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                     <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 bi bi-download">
-                        <a style="color: white; text-decoration: none;" href="files/moreInfo.txt" download>
+                        <a style="color: white; text-decoration: none;" href="files/dummy.pdf" id="download">
                             Download </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-download" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
+                        </svg>
+                    </button>
+
+                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 bi bi-download">
+                        <a style="color: white; text-decoration: none;" href="files/dummy.zip" id="download-zip">
+                            Download ZIP </a>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-download" viewBox="0 0 16 16">
                             <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
@@ -119,9 +131,9 @@
                     <div class="form-group">
                         <label for="contactReason">Reason for contacting</label>
                         <select class="form-control" id="contactReason">
-                            <option value="Option 1">Question</option>
-                            <option value="Option 2">Feedback</option>
-                            <option value="Option 3">I'm just bored</option>
+                            <option value="Question">Question</option>
+                            <option value="Feedback">Feedback</option>
+                            <option value="Bored">I'm just bored</option>
                         </select>
                     </div>
                     <br/>
@@ -143,7 +155,8 @@
                 <br/><br/>
                 <div id="copyConfirmation" class=""></div>
             </div>
-        </div></div>
+        </div>
+    </div>
 
     <div class="b-example-divider"></div>
 
@@ -157,7 +170,8 @@
             <div class="h-100 p-5  col-md-5 themed-grid-col">
                 <h2>Donate</h2>
 
-                <p class="lead mb-4">We don't know what we'll create, but it'd be great if you supported us (please)!</p>
+                <p class="lead mb-4">We don't know what we'll create, but it'd be great if you supported us
+                    (please)!</p>
                 <div class="d-grid gap-2 d-sm-flex">
                     <form>
                         <div class="form-group">
@@ -170,7 +184,8 @@
                     </form>
 
                 </div>
-
+                <br/>
+                <div id="donation-confirmation"></div>
             </div>
             <div class="col-md-2 themed-grid-col"></div>
             <div class="h-100 p-5 col-md-5 themed-grid-col">
@@ -182,7 +197,8 @@
                 <div id="thank-you" class="mt-3"></div>
                 <div id="thank-you-2" class="mt-3"></div>
             </div>
-        </div></div>
+        </div>
+    </div>
     </div>
 </main>
 
@@ -190,6 +206,14 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/my.js"></script>
+
+<noscript>
+    <div class="container col-xxl-8 px-4 py-5" id="enable-js-msg">
+        <div class="alert alert-danger d-flex justify-content-center">
+            We really need JavaScript enabled to work our magic!
+        </div>
+    </div>
+</noscript>
 
 </body>
 </html>

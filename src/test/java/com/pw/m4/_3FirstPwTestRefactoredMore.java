@@ -9,6 +9,8 @@ import org.junit.jupiter.api.*;
 
 public class _3FirstPwTestRefactoredMore {
 
+    String home = "file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html";
+
     // Refactoring 1 - extract PW and browser
     // Shared between all tests
     static Playwright playwright;
@@ -43,15 +45,15 @@ public class _3FirstPwTestRefactoredMore {
 
     @Test
     public void firstPlayWrightTest() {
-        page.navigate("file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html");
+        page.navigate(home);
         Assertions.assertEquals(page.title(), "Home Page");
     }
 
     @Test
     public void secondPlayWrightTest() {
-        page.navigate("file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html");
+        page.navigate(home);
         String content = page.content();
-        Assertions.assertTrue(content.contains("Cat In The Bag Inc."));
+        Assertions.assertTrue(content.contains("Cat In The Bag"));
     }
 
 }

@@ -13,15 +13,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class _1TextSelector {
 
-    String selectors = "file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html";
+    String home = "file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html";
 
     @Test
     public void textSelectorsTest() {
         try (Playwright playwright = Playwright.create()) {
             BrowserType browserType = playwright.chromium();
-            Browser browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false));
+            Browser browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(2000));
             Page page = browser.newPage();
-            page.navigate(selectors);
+            page.navigate(home);
 
             page.click("text=More Info");
             assertEquals(page.title(), "Advantages");
@@ -32,13 +32,13 @@ public class _1TextSelector {
     @ValueSource(strings = {
             "text=More Info", // perfect match, but doesn't have to be
             "text=more info", // case insensitive, also works
-            "'More Info'"})   // can be without 'text=' if enclosed in '', but then it's case sensitive
+            "'More info'"})   // can be without 'text=' if enclosed in '', but then it's case sensitive
     public void textSelectorsTestParametrized(String stringSelector) {
         try (Playwright playwright = Playwright.create()) {
             BrowserType browserType = playwright.chromium();
-            Browser browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false));
+            Browser browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(1000));
             Page page = browser.newPage();
-            page.navigate(selectors);
+            page.navigate(home);
 
             page.click(stringSelector); // perfect match
             assertEquals(page.title(), "Advantages");
