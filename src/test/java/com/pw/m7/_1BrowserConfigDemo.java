@@ -1,45 +1,36 @@
 package com.pw.m7;
 
-import com.microsoft.playwright.*;
+import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.BrowserType;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Playwright;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
-
-import java.io.File;
-import java.nio.file.Path;
-import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class _1BrowserConfigDemo {
+
+    public static String home = "file:///" + System.getProperty("user.dir") + "\\src\\web\\home.html";
 
     Playwright pw;
     Browser browser;
 
-    @Test
-    public void browserConfigDemo() {
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "chrome",
+            "msedge"
+    })
+    public void channelDemo(String channel) {
 
         pw = Playwright.create();
         browser = pw.chromium().launch(new BrowserType.LaunchOptions()
+                .setChannel(channel)
                 .setHeadless(false)
-                .setChannel("chrome")
-                // this is still deleted at the end of the test run
-                .setDownloadsPath(Path.of(new File(System.getProperty("user.dir") + "\\src\\web\\downloads\\download.zip").toURI()))
-                .setArgs(List.of("--start-maximized")) // or --start-fullscreen - doesn't work, asked in Slack
+                .setSlowMo(2000)
         );
 
-        Page page = browser.newContext(new Browser.NewContextOptions().setAcceptDownloads(true)).newPage();
-//        page.setViewportSize(1920, 1080);
-
-        page.navigate("https://github.com/andrejs-ps/cat-in-the-bag");
-        page.click("get-repo");
-
-        Download download = page.waitForDownload(() -> {
-            page.click("text=Download ZIP");
-        });
-
-        // will persist
-        download.saveAs(Path.of(new File(System.getProperty("user.dir") + "\\src\\web\\download2.zip").toURI()));
-
-        Path path = download.path();
-        System.out.println(path);
+        Page page = browser.newContext().newPage();
+        page.navigate(home);
     }
 
     @AfterEach
