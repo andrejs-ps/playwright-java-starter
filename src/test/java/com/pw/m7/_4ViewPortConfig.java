@@ -1,39 +1,44 @@
 package com.pw.m7;
 
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.ViewportSize;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static com.pw.ScriptBase.home;
 
-public class _4JavaScriptDisabledConfig {
+public class _4ViewPortConfig {
 
     Playwright pw;
     Browser browser;
 
     @Test
-    public void javascriptConfigDemo() {
+    public void viewPortConfigDemo() {
 
         pw = Playwright.create();
         browser = pw.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(2000));
         BrowserContext ctx = browser.newContext(new Browser.NewContextOptions()
-                .setJavaScriptEnabled(false)
+                .setViewportSize(375, 667) // that of iPhone 6/7/8
         );
 
 
         Page page = ctx.newPage();
         page.navigate(home);
 
-
+        // verify that the UI is still usable
         page.click("#clap-image");
-        Assertions.assertFalse(page.isVisible("#thank-you"));
-        Assertions.assertTrue(page.isVisible("#enable-js-msg"));
+        Assertions.assertTrue(page.isVisible("#thank-you"));
     }
 
     @AfterEach
     public void cleanup() {
         browser.close();
         pw.close();
+    }
+
+    static class ViewPortSizes {
+        public static final ViewportSize IPHONE_X = new ViewportSize(375, 812);
+        public static final ViewportSize GALAXY_S5 = new ViewportSize(360, 640);
     }
 }

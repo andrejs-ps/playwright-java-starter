@@ -1,6 +1,7 @@
 package com.pw.m7;
 
 import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import org.junit.jupiter.api.AfterEach;
@@ -19,14 +20,13 @@ public class _2BaseUrlConfig {
 
         pw = Playwright.create();
         browser = pw.chromium().launch();
-        // should return and save to 'BrowserContext ctx = '
-        browser.newContext(new Browser.NewContextOptions()
+
+        BrowserContext ctx = browser.newContext(new Browser.NewContextOptions()
                 .setBaseURL(base)
         );
 
         // should be this
-//        Page page = ctx.newPage();
-        Page page = browser.newPage();
+        Page page = ctx.newPage();
 
         page.navigate("home.html");
         Assertions.assertEquals(page.title(), "Home Page");

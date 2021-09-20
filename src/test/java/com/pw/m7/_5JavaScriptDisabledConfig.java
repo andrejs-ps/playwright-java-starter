@@ -7,27 +7,28 @@ import org.junit.jupiter.api.Test;
 
 import static com.pw.ScriptBase.home;
 
-public class _3ViewPortConfig {
+public class _5JavaScriptDisabledConfig {
 
     Playwright pw;
     Browser browser;
 
     @Test
-    public void viewPortConfigDemo() {
+    public void javascriptConfigDemo() {
 
         pw = Playwright.create();
         browser = pw.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(2000));
         BrowserContext ctx = browser.newContext(new Browser.NewContextOptions()
-                .setViewportSize(375, 667) // that of iPhone 6/7/8
+                .setJavaScriptEnabled(false)
         );
 
 
         Page page = ctx.newPage();
         page.navigate(home);
 
-        // verify that the UI is still usable
+
         page.click("#clap-image");
-        Assertions.assertTrue(page.isVisible("#thank-you"));
+        Assertions.assertFalse(page.isVisible("#thank-you"));
+        Assertions.assertTrue(page.isVisible("#enable-js-msg"));
     }
 
     @AfterEach

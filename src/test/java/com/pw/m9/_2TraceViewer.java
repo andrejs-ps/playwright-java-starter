@@ -16,7 +16,7 @@ public class _2TraceViewer {
     public void traceViewerDemo() {
 
         pw = Playwright.create();
-        browser = pw.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(1000));
+        browser = pw.chromium().launch();
 
         BrowserContext context = browser.newContext();
 
@@ -41,7 +41,6 @@ public class _2TraceViewer {
 
     @AfterEach
     public void cleanup() {
-        browser.close();
         pw.close();
     }
 }

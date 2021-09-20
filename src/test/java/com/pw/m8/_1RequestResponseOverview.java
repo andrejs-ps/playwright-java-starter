@@ -5,6 +5,7 @@ import com.microsoft.playwright.Response;
 import com.pw.ScriptBase;
 import org.junit.jupiter.api.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,25 +14,24 @@ public class _1RequestResponseOverview extends ScriptBase {
     @Test
     public void responseApiDemo() {
 
-        // not much from a local file, naturally
+        // not status code from a local file, naturally
         Response r = page.navigate(home);
         System.out.println(r.status()); // 0
 
         // but plenty from a resource served by a server
-        Response r2 = page.navigate("https://github.com");
+        Response r2 = page.navigate("https://playwright.dev");
 
         System.out.println(r2.url());
         System.out.println(r2.status());
         System.out.println(r2.ok()); // true if in the 200-299 range
-
-        System.out.println(r2.statusText());
-        System.out.println(r2.text());
-
         System.out.println(r2.headers());
-        System.out.println(r2.body()); // byte[]
-        System.out.println(r2.finished()); // null
-        System.out.println(r2.securityDetails().protocol); // protocol=TLS 1.3, other fields available
-        System.out.println(r2.serverAddr().ipAddress); //also prot available
+
+
+        System.out.println(r2.body()); // hash
+        System.out.println("Converted byte array");
+        System.out.println(new String(r2.body(), StandardCharsets.UTF_8)); // byte[]
+        System.out.println("Convenience method");
+        System.out.println(r2.text());
     }
 
     @Test

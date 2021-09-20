@@ -17,7 +17,7 @@ public class _2TraceViewerRefactored {
     public void traceViewerFailingTestDemo() {
 
         pw = Playwright.create();
-        browser = pw.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(1000));
+        browser = pw.chromium().launch();
 
         context = browser.newContext();
 
@@ -41,7 +41,6 @@ public class _2TraceViewerRefactored {
         // Stop tracing and export it into a zip archive.
         context.tracing().stop(new Tracing.StopOptions()
                 .setPath(Paths.get("trace.zip")));
-        browser.close();
         pw.close();
     }
 }
