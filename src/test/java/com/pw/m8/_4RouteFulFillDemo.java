@@ -44,19 +44,21 @@ public class _4RouteFulFillDemo {
     public void requestChangeContentDemo() {
 
         pw = Playwright.create();
-        browser = pw.chromium().launch();
+        browser = pw.chromium().launch( new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(2000));
         BrowserContext ctx = browser.newContext(new Browser.NewContextOptions());
 
         Page page = ctx.newPage();
 
         // when request matches - replace the response with own data
         page.route("**/*/user", route -> route.fulfill(
-                new Route.FulfillOptions().setPath(Paths.get("src\\web\\files\\test_data.json")))
+                new Route.FulfillOptions()
+                        .setStatus(203)
+                        .setPath(Paths.get("src\\web\\files\\test_data.json")))
         );
 
         Response response = page.navigate("https://api.github.com/user");
         System.out.println(response.text());
-        Assertions.assertEquals(200, response.status());
+        Assertions.assertEquals(203, response.status());
         Assertions.assertTrue(response.text().contains("Route FulFill Demo"));
     }
 

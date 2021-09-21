@@ -39,7 +39,7 @@ public class ScriptBase {
         context = browser.newContext();
         page = context.newPage();
         page.setViewportSize(1920, 1080); // make part of demo
-        page.setDefaultTimeout(3000); // not part of demo
+        page.setDefaultTimeout(8000); // not part of demo
     }
 
     @AfterEach

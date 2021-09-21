@@ -3,6 +3,7 @@ package com.pw.m8;
 import com.microsoft.playwright.Request;
 import com.microsoft.playwright.Response;
 import com.pw.ScriptBase;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
@@ -43,8 +44,8 @@ public class _1RequestResponseOverview extends ScriptBase {
         Request request = response.request();
 
         System.out.println(request.headers());
-        System.out.println(request.method());
         System.out.println(request.postData()); // null
+        System.out.println(request.method());
     }
 
     @Test
@@ -52,19 +53,29 @@ public class _1RequestResponseOverview extends ScriptBase {
 
         // Option 1: just print
         page.onRequest(request -> System.out.println(">> " + request.method() + " " + request.url()));
-        page.onResponse(response -> System.out.println("<<" + response.status() + " " + response.url()));
+        page.onResponse(response -> System.out.println("<<" + response.status()));
 
         // Option 2: save to a list and do something with it if necessary
-        List<String> requests =  new ArrayList<>();
-        List<String> responses = new ArrayList<>();
-        page.onRequest(request -> requests.add(request.method() + " " + request.url()));
-        page.onResponse(response -> responses.add(response.status() + " " + response.url()));
+
+        List<Integer> responses = new ArrayList<>();
+        page.onResponse(response -> responses.add(response.status()));
+
+        // coding task solution
+        List<Boolean> responses2 = new ArrayList<>();
+        page.onResponse(response -> responses2.add(response.ok()));
 
         page.navigate("https://playwright.dev/");
 
-        System.out.println("============== Printing Requests ==============");
-        System.out.println(requests);
         System.out.println("============== Printing Responses ==============");
         System.out.println(responses);
+
+        boolean foundMatch = responses.stream()
+                .anyMatch( i -> i < 200 || i >= 300);
+        Assertions.assertFalse(foundMatch); // no match => all codes were below 300
+
+        boolean foundMatch2 = responses2.stream()
+                .anyMatch(b -> b == false);
+        Assertions.assertFalse(foundMatch2); // no match => all codes were below 300
+
     }
 }
